@@ -30,7 +30,7 @@ func CountSameDestination(firstDest *Passenger) int {
 
 var (
 	first451	*Passenger
-	firstDallas *Passenger
+	firstDallas	*Passenger
 )
 
 func main() {
