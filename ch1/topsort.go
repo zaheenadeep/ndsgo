@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type List struct {
 	Data	int
 	Next	*List
@@ -21,7 +23,7 @@ func buildt(nt int, rels []Relation) []Item {
 	return t
 }
 
-func TopologicalSort(nt int, rels []Relation) {
+func TopologicalSort(nt int, rels []Relation) []int {
 	var s []int
 	t := buildt(nt, rels)
 	for i, item := range t {
@@ -29,8 +31,9 @@ func TopologicalSort(nt int, rels []Relation) {
 			s = append(s, i)
 		}
 	}
-	for _, i := range s {
-		for l := t[i].Successors; l != nil; l = l.Next {
+	for i := 0; i < len(s); i++ {
+		j := s[i]
+		for l := t[j].Successors; l != nil; l = l.Next {
 			succ := t[l.Data]
 			succ.PredCount--
 			if succ.PredCount == 0 {
@@ -38,8 +41,12 @@ func TopologicalSort(nt int, rels []Relation) {
 			}
 		}
 	}
+	if len(s) != nt {
+		return nil
+	}
+	return s
 }
 
 func main() {
-	
+	fmt.Println(TopologicalSort(7, []Relation{{3, 2}, {1, 0}, {0, 3}}))
 }
