@@ -3,16 +3,16 @@ package main
 import "fmt"
 
 type List struct {
-	Data	int
-	Next	*List
+	Data int
+	Next *List
 }
 
 type Item struct {
-	PredCount	int
-	Successors	*List
+	PredCount  int
+	Successors *List
 }
 
-type Relation struct { I, J	int }
+type Relation struct{ I, J int }
 
 func buildt(nt int, rels []Relation) []Item {
 	t := make([]Item, nt)
