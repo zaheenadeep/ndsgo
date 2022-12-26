@@ -71,6 +71,16 @@ func visit(data int) {
 	fmt.Println(data) // example for visit
 } 
 
+func InOrder(t *BNode) {
+	if t == nil {
+		return
+	} else {
+		InOrder(t.LSon)
+		visit(t.Data)
+		InOrder(t.RSon)
+	}
+}
+
 func main() {
 	fmt.Println(Similar3(nil, nil))
 	fmt.Println(Similar3(&BNode{34, nil, nil}, nil))
@@ -84,4 +94,5 @@ func main() {
 	fmt.Println(Equivalent(&BNode{34, nil, &BNode{56, nil, nil}}, &BNode{34, nil, &BNode{56, nil, nil}}))
 	
 	InOrderStack(&BNode{34, &BNode{23, nil, &BNode{27, nil, nil}}, &BNode{56, nil, nil}})
+	InOrder(&BNode{34, &BNode{23, nil, &BNode{27, nil, nil}}, &BNode{56, nil, nil}})
 }
