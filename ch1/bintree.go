@@ -51,6 +51,26 @@ func Equivalent(t1, t2 *BNode) bool {
 	}
 }
 
+func InOrderStack(t *BNode) {
+	var s []*BNode // stack declared as a slice
+	b := t
+	for !(b == nil && len(s) == 0) {
+		if b != nil {
+			s = append(s, b) // stack push
+			b = b.LSon
+		} else { // b == nil && len(s) > 0
+			top := s[len(s)-1] // stack top
+			visit(top.Data)
+			s = s[:len(s)-1] // stack pop
+			b = top.RSon
+		}
+	}
+}
+
+func visit(data int) {
+	fmt.Println(data) // example for visit
+} 
+
 func main() {
 	fmt.Println(Similar3(nil, nil))
 	fmt.Println(Similar3(&BNode{34, nil, nil}, nil))
@@ -62,4 +82,6 @@ func main() {
 	fmt.Println(Equivalent(&BNode{34, nil, nil}, &BNode{34, nil, nil}))
 	fmt.Println(Equivalent(&BNode{34, nil, nil}, &BNode{56, nil, nil}))
 	fmt.Println(Equivalent(&BNode{34, nil, &BNode{56, nil, nil}}, &BNode{34, nil, &BNode{56, nil, nil}}))
+	
+	InOrderStack(&BNode{34, &BNode{23, nil, &BNode{27, nil, nil}}, &BNode{56, nil, nil}})
 }
