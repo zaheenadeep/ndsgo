@@ -8,8 +8,7 @@ type ThreadNode struct {
 
 func InOrderSuccessor(p *ThreadNode) *ThreadNode {
 	q := p.RSon
-	if !p.RThread {
-		// not a thread
+	if !p.RThread { // p.Rson not a thread
 		for !q.LThread {
 			q = q.LSon
 		}
