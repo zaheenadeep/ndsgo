@@ -1,7 +1,3 @@
-package main
-
-import "fmt"
-
 type ThreadNode struct {
 	Data		int
 	LSon		*ThreadNode
@@ -22,10 +18,10 @@ func InOrderSuccessor(p *ThreadNode) *ThreadNode {
 }
 
 func AddNodeThreaded(p, q *ThreadNode) {
-	q.RSon, q.RThread = p.RSon, p.RThread // p.RSon becomes q.RSon
-	p.RSon, p.RThread = q, false // q becomes p.RSon
-	q.LSon, q.LThread = p, true // p becomes in-order pred of q
-	if !q.RThread { // p did have a right son originally
-		InOrderSuccessor(q).LSon = q // set q's in-order pred
+	q.RSon, q.RThread = p.RSon, p.RThread
+	p.RSon, p.RThread = q, false // q becomes p's right son
+	q.LSon, q.LThread = p, true // p becomes q's in-order pred
+	if !q.RThread { // p originally had a right son 
+		InOrderSuccessor(q).LSon = q // set q as in-order pred
 	}
 }
