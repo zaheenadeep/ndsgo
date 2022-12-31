@@ -38,21 +38,21 @@ func MakeSet(e int) *EqClass {
 }
 
 func UnionFind(rels []*EqRelation) []*EqClass {
-	m := make(map[*EqClass]bool) // use built-in map as a set
+	s := NewSet()
 	for _, rel := range rels {
 		a := Find(rel.A)
 		b := Find(rel.B)
-		delete(m, a) // set remove
-		delete(m, b) // set remove
+		s.Remove(a)
+		s.Remove(b)
 		if a != b {	
-			m[Union(a, b)] = true // set add
+			s.Add(Union(a, b))
 		} else {
-			m[a] = true // set add
+			s.Add(a)
 		}
 	}
 
 	var keys []*EqClass
-	for k := range m {
+	for k := range s.list {
 		keys = append(keys, k)
 	}
 	return keys
@@ -74,4 +74,31 @@ func main() {
 	for _, ec := range uf {
 		fmt.Println(ec.Data)
 	}
+}
+
+// Ignore everything after this.
+// It is an abstraction defined for set operations using built-in go maps.
+// from https://gist.github.com/bgadrian/cb8b9344d9c66571ef331a14eb7a2e80
+
+type Set struct {
+	list map[*EqClass]struct{} //empty structs occupy 0 memory
+}
+
+func (s *Set) Has(v *EqClass) bool {
+	_, ok := s.list[v]
+	return ok
+}
+
+func (s *Set) Add(v *EqClass) {
+	s.list[v] = struct{}{}
+}
+
+func (s *Set) Remove(v *EqClass) {
+	delete(s.list, v)
+}
+
+func NewSet() *Set {
+	s := &Set{}
+	s.list = make(map[*EqClass]struct{})
+	return s
 }
