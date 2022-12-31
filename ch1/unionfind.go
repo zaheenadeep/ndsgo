@@ -71,4 +71,5 @@ func main() {
 	// Tests
 	fmt.Println(Find(Two) == Find(One)) // true; Two and One equivalent
 	fmt.Println(Find(Two) == Find(Twelve))  // false; Two and Twelve not equivalent
+	fmt.Println(Find(Seven) == Find(MakeSet(1000))) // false: Seven and new class not equivalent
 }
