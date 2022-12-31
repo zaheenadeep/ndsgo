@@ -1,3 +1,5 @@
+package threadtree
+
 type ThreadNode struct {
 	Data		int
 	LSon		*ThreadNode

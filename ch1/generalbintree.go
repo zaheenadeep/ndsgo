@@ -1,3 +1,5 @@
+package generalbintree
+
 type GNode struct {
 	Data		int
 	LSon		*GNode
