@@ -23,18 +23,18 @@ func Reconstruct(l *List) *BNode {
 	if l == nil {
 		return nil
 	}
-	return Rebuild(l)
+	return rebuild(l)
 }
 
-func Rebuild(l *List) *BNode {
+func rebuild(l *List) *BNode {
 	switch l.Type {
 	case Leaf:
 		return &BNode{l.Data, nil, nil}
 	case NonLeaf:
 		return &BNode{
 			Data: l.Data,
-			LSon: Rebuild(l.Next),
-			RSon: Rebuild(l.Next.Next),
+			LSon: rebuild(l.Next),
+			RSon: rebuild(l.Next.Next),
 		}
 	}
 }
