@@ -33,6 +33,6 @@ func InsertionSortDec(in []int) []int {
 }
 
 func main()  {
-	fmt.Println(InsertionSortInc([]int{2,3,43,5,56,2,313,432,5,4,6}))
-	fmt.Println(InsertionSortDec([]int{2,3,43,5,56,2,313,432,5,4,6}))
+	fmt.Println(InsertionSortInc([]int{2,432,3,43,5,56,2,313,5,4,6}))
+	fmt.Println(InsertionSortDec([]int{2,432,3,43,5,56,2,313,5,4,6}))
 }
