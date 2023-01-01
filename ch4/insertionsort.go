@@ -19,6 +19,20 @@ func InsertionSortInc(in []int) []int {
 	return out[:len(in)]
 }
 
+func InsertionSortDec(in []int) []int {
+	out := make([]int, len(in)+1)
+	out[0] = math.MinInt
+	for i, x := range in {
+		var j int
+		for j = i+1; out[j-1] > x; j-- {
+			out[j] = out[j-1]
+		}
+		out[j] = x
+	}
+	return out[1:]
+}
+
 func main()  {
 	fmt.Println(InsertionSortInc([]int{2,3,43,5,56,2,313,432,5,4,6}))
+	fmt.Println(InsertionSortDec([]int{2,3,43,5,56,2,313,432,5,4,6}))
 }
