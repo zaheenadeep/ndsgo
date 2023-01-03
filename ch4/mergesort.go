@@ -4,7 +4,7 @@ import "fmt"
 
 func TopDownMergeSort(s []int) []int {
 	if len(s) == 1 {
-		return s
+		return []int{s[0]}
 	}
 	
 	m := (len(s)-1) / 2
