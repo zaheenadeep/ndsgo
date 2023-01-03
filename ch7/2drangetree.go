@@ -13,20 +13,21 @@ type Point struct { X, Y int }
 
 type RNode struct {
 	Type	RType
-	Mid		Point
+	Mid		int
+	Point	Point
 	RTree	*RNode
 	Left	*RNode
 	Right	*RNode
 }
 
-func (t *RNode) RangeSearch2D(bx, ex, by, ey int) {
-	
+func (t *RNode) RangeSearch2D(bX, eX, bY, eY int) []Point {
+
 }
 
-func (t *RNode) rangeSearch1D(b, e int) []int {
+func (t *RNode) rangeSearch1D(b, e int) []Point {
 	// tree traversal
 	for t != nil && t.Type == NonLeaf {
-		if b <= t.Mid.X {
+		if b <= t.Mid {
 			t = t.Left
 		} else {
 			t = t.Right
@@ -37,12 +38,12 @@ func (t *RNode) rangeSearch1D(b, e int) []int {
 	}
 
 	// list traversal
-	if t.Mid.X < b {
+	if t.Mid < b {
 		t = t.Right
 	}
-	var s []int
-	for t != nil && t.Mid.X <= e {
-		s = append(s, t.Mid.X)
+	var s []Point
+	for t != nil && t.Mid <= e {
+		s = append(s, t.Point)
 		t = t.Right
 	}
 	return s
